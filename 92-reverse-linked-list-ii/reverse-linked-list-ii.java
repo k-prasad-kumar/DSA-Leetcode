@@ -9,21 +9,6 @@
  * }
  */
 class Solution {
-    // public void reverse(ListNode curr, int right){
-    //     // ListNode itr = curr;
-    //      ListNode prev = null;
-    //      ListNode next = null;
-    //      ListNode temp = null;
-    //     // reverse
-    //     while(curr.val != right){
-    //         next = curr.next;
-    //         curr.next = prev;
-    //         prev = curr;
-    //         curr = next;
-    //     }
-    //     // temp.next = prev;
-
-    // }
     public ListNode reverseBetween(ListNode head, int left, int right) {
         // base case
         if(head == null) return null;
@@ -39,6 +24,7 @@ class Solution {
         ListNode curr = prev.next;
         ListNode next = curr.next;
 
+        // reversing 
         for(int j=0; j<right-left; j++){
             curr.next = next.next;
             next.next = prev.next;
