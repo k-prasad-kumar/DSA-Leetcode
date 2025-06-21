@@ -39,16 +39,12 @@ class Solution {
             curr = curr.next;
         }
 
-        while(left != null){
+        if(left != null){
             curr.next = left;
-            left = left.next;
-            curr = curr.next;
         }
 
-        while(right != null){
+        if(right != null){
             curr.next = right;
-            right = right.next;
-            curr = curr.next;
         }
         return dummy.next;
     }
