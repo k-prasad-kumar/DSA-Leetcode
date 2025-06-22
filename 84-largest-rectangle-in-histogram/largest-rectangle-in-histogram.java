@@ -8,7 +8,7 @@ class Solution {
         for(int i=n-1; i>=0; i--){
             int curr = heights[i];
             
-            while(st.peek() != -1 && heights[st.peek()] >= curr){
+            while(!st.isEmpty() && st.peek() != -1 && heights[st.peek()] >= curr){
                 st.pop();
             }
             arr[i] = st.isEmpty() ? -1 : st.peek();
@@ -28,7 +28,7 @@ class Solution {
         for(int i=0; i<n; i++){
             int curr = heights[i];
 
-            while(st.peek() != -1 && heights[st.peek()] >= curr){
+            while(!st.isEmpty() && st.peek() != -1 && heights[st.peek()] >= curr){
                 st.pop();
             }
             arr[i] = st.isEmpty() ? -1 : st.peek();
