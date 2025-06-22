@@ -11,8 +11,8 @@ class Solution {
             while(st.peek() != -1 && heights[st.peek()] >= curr){
                 st.pop();
             }
-            // arr[i] = st.isEmpty() ? -1 : st.peek();
-            arr[i] = st.peek();
+            arr[i] = st.isEmpty() ? -1 : st.peek();
+            // arr[i] = st.peek();
             st.push(i);
         }
 
@@ -31,8 +31,8 @@ class Solution {
             while(st.peek() != -1 && heights[st.peek()] >= curr){
                 st.pop();
             }
-            // arr[i] = st.isEmpty() ? -1 : st.peek();
-            arr[i] = st.peek();
+            arr[i] = st.isEmpty() ? -1 : st.peek();
+            // arr[i] = st.peek();
             st.push(i);
         }
 
