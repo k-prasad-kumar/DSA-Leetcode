@@ -40,8 +40,8 @@ class Solution {
     public int largestRectangleArea(int[] heights) {
         int n = heights.length;
 
-        if (heights == null || n == 0) return 0;
-        
+        if (n == 0) return 0;
+
         int[] prev = new int[n];
         prev = prevSmallerElements(heights, n);
 
@@ -55,7 +55,7 @@ class Solution {
             if(next[i] == -1) next[i] = n;
 
             int newArea = l * (next[i] - prev[i] - 1);
-            area = area > newArea ? area : newArea;
+            area = Math.max(area, newArea);
         }
 
         return area;
