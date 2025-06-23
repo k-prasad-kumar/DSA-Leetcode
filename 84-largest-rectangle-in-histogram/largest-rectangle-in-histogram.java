@@ -40,6 +40,8 @@ class Solution {
     public int largestRectangleArea(int[] heights) {
         int n = heights.length;
 
+        if (heights == null || n == 0) return 0;
+        
         int[] prev = new int[n];
         prev = prevSmallerElements(heights, n);
 
