@@ -1,42 +1,40 @@
 class Solution {
-    public int[] nextSmallerElements(int[] heights, int n){
-        int[] arr = new int[n];
+    public int[] nextSmallerElements(int[] arr, int n){
+        int[] ans = new int[n];
 
         Stack<Integer> st = new Stack<>();
         st.push(-1);
 
         for(int i=n-1; i>=0; i--){
-            int curr = heights[i];
-            
-            while(!st.isEmpty() && st.peek() != -1 && heights[st.peek()] >= curr){
+            int curr = arr[i];
+
+            while(st.peek() != -1 && arr[st.peek()] >= curr){
                 st.pop();
             }
-            arr[i] = st.isEmpty() ? -1 : st.peek();
-            // arr[i] = st.peek();
+            ans[i] = st.peek();
             st.push(i);
         }
 
-        return arr;
+        return ans;
     }
 
-    public int[] prevSmallerElements(int[] heights, int n){
-        int[] arr = new int[n];
+    public int[] prevSmallerElements(int[] arr, int n){
+        int[] ans = new int[n];
 
         Stack<Integer> st = new Stack<>();
         st.push(-1);
 
         for(int i=0; i<n; i++){
-            int curr = heights[i];
+            int curr = arr[i];
 
-            while(!st.isEmpty() && st.peek() != -1 && heights[st.peek()] >= curr){
+            while(st.peek() != -1 && arr[st.peek()] >= curr){
                 st.pop();
             }
-            arr[i] = st.isEmpty() ? -1 : st.peek();
-            // arr[i] = st.peek();
+            ans[i] = st.peek();
             st.push(i);
         }
 
-        return arr;
+        return ans;
     }
 
     public int largestRectangleArea(int[] heights) {
@@ -52,11 +50,9 @@ class Solution {
         for(int i=0; i<n; i++){
             int l = heights[i];
 
-            // if all equal next[] last elem will be -1
             if(next[i] == -1) next[i] = n;
 
-            int b = next[i] - prev[i] - 1;
-            int newArea = l * b;
+            int newArea = l * (next[i] - prev[i] - 1);
             area = area > newArea ? area : newArea;
         }
 
