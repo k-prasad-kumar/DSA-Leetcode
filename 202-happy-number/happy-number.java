@@ -24,6 +24,6 @@ class Solution {
             fast = squareOfNum(squareOfNum(fast));
         }while(slow != fast);
 
-        return slow == 1;
+        return slow == 1 || slow == 7;
     }
 }
