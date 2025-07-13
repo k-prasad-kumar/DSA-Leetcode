@@ -26,16 +26,11 @@ class Solution {
 
         while(!q.isEmpty()){
             int size = q.size();
-            // LinkedList<Integer> arr = new LinkedList<>();
             int[] temp = new int[size];
 
             for(int i=0; i<size; i++){
                 TreeNode t = q.remove();
 
-                // if (isReverse)
-                //     arr.addFirst(t.val);
-                // else
-                //     arr.addLast(t.val);
                 int index = isReverse ? (size-1)-i : i;
                 temp[index] = t.val;
 
@@ -43,7 +38,7 @@ class Solution {
                 if(t.right != null) q.add(t.right);
             }
             isReverse = !isReverse;
-
+            // convert array to ArrayList
             List<Integer> arr = new LinkedList<>();
             for(int n: temp) arr.add(n);
             ans.add(arr);
