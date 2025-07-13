@@ -14,17 +14,18 @@
  * }
  */
 class Solution {
-    // global var
+    // global variables
     int postIndex;
-    
+
     private TreeNode solve(int[] postorder, int start, int end, HashMap<Integer, Integer> nodeToIndex){
+        // base case
         if(start > end) return null;
 
-        // create root noe
-        int element = postorder[postIndex--];
-        TreeNode root = new TreeNode(element);
-        int position = nodeToIndex.get(element);
+        int element = postorder[postIndex--];  // first get element from postorder arr & decrement postIndex
+        TreeNode root = new TreeNode(element);  // create new Node(root) using element 
+        int position = nodeToIndex.get(element);    // find position of element in inorder arr mapping
 
+        // create right && left tree RC
         root.right = solve(postorder,  position + 1, end, nodeToIndex);
         root.left = solve(postorder, start, position - 1, nodeToIndex);
 
@@ -35,6 +36,7 @@ class Solution {
         int n = inorder.length;
 
         postIndex = n-1;
+        // create node -> index mapping to reduce time
         HashMap<Integer, Integer> nodeToIndex = new HashMap<>();
         for(int i=0; i<n; i++) nodeToIndex.put(inorder[i], i);
 
