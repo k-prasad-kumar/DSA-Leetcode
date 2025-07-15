@@ -24,6 +24,7 @@ class Node {
 class Solution {
 
     public Node connect(Node root) {
+        // We are using arraylist instead of queue to get next node [level order]
         List<Node> currLevel = new ArrayList<>();
         currLevel.add(root);
 
