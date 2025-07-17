@@ -15,6 +15,7 @@
  */
 class Solution {
     private TreeNode buildTree(TreeNode root, int val){
+        // base case
         if(root == null){
             root = new TreeNode(val);
             return root;
@@ -25,10 +26,11 @@ class Solution {
         else
             root.right =  buildTree(root.right, val);
 
-            return root;
+        return root;
     }
     public TreeNode bstFromPreorder(int[] preorder) {
         TreeNode root =null;
+        
         for(int num: preorder){
             root = buildTree(root, num);
         }
