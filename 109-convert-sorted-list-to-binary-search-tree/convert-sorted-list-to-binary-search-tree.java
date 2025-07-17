@@ -25,6 +25,7 @@
  */
 class Solution {
     private TreeNode buildBST(ListNode start, ListNode end){
+        // base case
         if(start == end) return null;
 
         // find mid between start -> end (note: here check fast with end not with null)
@@ -46,10 +47,37 @@ class Solution {
         return root;
     }
 
+    // 2nd approach (mine)
+    private TreeNode buildBST2(ListNode head){
+        // base case
+        if(head == null) return null;
+        if(head.next == null) return new TreeNode(head.val);
+
+        // find mid
+        ListNode slow = head, fast = head, prev = null;
+        while(fast != null && fast.next != null){
+            prev = slow;
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+
+        // create root node
+        TreeNode root = new TreeNode(slow.val);
+        prev.next = null; // beaking the LL into 2LL
+
+        // create root left subtree from start -> slow (mid) of LL
+        root.left = buildBST2(head);
+        // create root right subtree from slow.next (mid.next) -> end of LL
+        root.right = buildBST2(slow.next);
+
+        return root;
+    }
+
     public TreeNode sortedListToBST(ListNode head) {
         if (head == null)
             return null;
 
-        return buildBST(head, null);
+        // return buildBST(head, null);
+        return buildBST2(head);
     }
 }
