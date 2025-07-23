@@ -23,46 +23,28 @@ class Solution {
         if(root == null) return;
 
         inorder(root.left);
-        // if(map.containsKey(root.val)){
-        //     map.put(root.val, map.get(root.val)+1);
-        // }else{
-        //     map.put(root.val, 1);
-        // }
 
-        if(prev != null && prev.val == root.val){
+        if(prev != null && prev.val == root.val){ // when prev val is equal to curr root val increase count
             currentCount++;
         }else{
             currentCount = 1;
         }
-        
+        // check currentCount is greater than maxCount then change maxCount and create new modes arraylist
         if (currentCount > maxCount) {
             maxCount = currentCount;
-            modes = new ArrayList<>();
+            modes = new ArrayList<>(); // when we get new max occured value we create a new arraylist
             modes.add(root.val);
         } else if (currentCount == maxCount) {
             modes.add(root.val);
         }
 
-        prev = root;
+        prev = root; // for next round curr node is prev node
 
         inorder(root.right);
     }
 
     public int[] findMode(TreeNode root) {
-        // HashMap<Integer, Integer> map = new HashMap<>();
-        // inorder(root, map);
-
-        // // get max 
-        // int max = 0;
-        // for(int i: map.keySet()) if(max < map.get(i)) max = map.get(i);
-
-        // // store all max values into arraylist
-        // List<Integer> al = new ArrayList<>();
-        // for(int i: map.keySet()){
-        //     if(map.get(i) == max) al.add(i);
-        // }
-
-        
+        // optimal approach
         inorder(root);
 
         // convert arraylist into array
@@ -70,6 +52,7 @@ class Solution {
         for(int i=0; i<modes.size(); i++){
             arr[i] = modes.get(i);
         }
+
         return arr;
     }
 }
