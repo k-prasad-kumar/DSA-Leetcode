@@ -1,21 +1,43 @@
 class MedianFinder {
-    PriorityQueue<Integer> minHeap = new PriorityQueue<>(); // Min Heap (default)
-    PriorityQueue<Integer> maxHeap = new PriorityQueue<>(Collections.reverseOrder()); // Max Heap using reverse order
-    
+    PriorityQueue<Integer> minHeap;
+    PriorityQueue<Integer> maxHeap;
+
     public MedianFinder() {
+        minHeap = new PriorityQueue<Integer>();
+        maxHeap = new PriorityQueue<Integer>((a, b) -> b - a);
+    }
+
+    private void balance() {
+        if (Math.abs(minHeap.size() - maxHeap.size()) > 1) {
+            if (minHeap.size() < maxHeap.size()) {
+                minHeap.add(maxHeap.poll());
+            } else {
+                maxHeap.add(minHeap.poll());
+            }
+        }
     }
     
     public void addNum(int num) {
-        maxHeap.add(num);
-        minHeap.add(maxHeap.remove());
-
-        if(minHeap.size() > maxHeap.size()) maxHeap.add(minHeap.remove());
+        if (maxHeap.size() == 0 || num <= maxHeap.peek()) {
+            maxHeap.add(num);
+        } else {
+            minHeap.add(num);
+        }
+        balance();  // balancing both heaps (left & right)
     }
-
-    public double findMedian() {
-       if(maxHeap.size() > minHeap.size()) return maxHeap.peek();
     
-        return (maxHeap.peek() + minHeap.peek()) / 2.0;
+    public double findMedian() {
+        int a = minHeap.size();
+        int b = maxHeap.size();
+        if (a == b) {
+            return (minHeap.peek() + maxHeap.peek()) / 2.0;
+        } else {
+            if (a < b) {
+                return (double)maxHeap.peek();
+            } else {
+                return (double)minHeap.peek();
+            }
+        }
     }
 }
 
