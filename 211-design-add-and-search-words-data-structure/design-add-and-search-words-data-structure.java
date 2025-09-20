@@ -59,15 +59,15 @@ class WordDictionary {
             }
             // if any patn or word doesn't exist then return false
             return false;
-        }
-
-        int index = ch - 'a';
+        }else{
+            int index = ch - 'a';
 
         // if present
         if(root.children[index] != null){
             root = root.children[index];
         }else { // absent
             return false;
+        }
         }
 
         // recursion
