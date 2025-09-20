@@ -2,7 +2,6 @@
 class TrieNode{
 	char data;
 	TrieNode[] children = new TrieNode[26];
-	int childCount;
 	boolean isTerminal;
 
 	TrieNode(char ch){
@@ -11,7 +10,6 @@ class TrieNode{
 		for(int i=0; i<26; i++){
 			children[i] = null;
 		}
-		childCount = 0;
 		isTerminal = false;
 	}
 }
@@ -38,7 +36,6 @@ class Trie {
         }else { // absent
             child = new TrieNode(word.charAt(0));
             root.children[index] = child;
-            root.childCount++;
         }
 
         // recursion
