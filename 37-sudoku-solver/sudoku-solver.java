@@ -5,20 +5,19 @@ class Solution {
 			if(board[row][i] == val || board[i][col] == val) return false;
 
 			// check 3*3 matrix
-			if(board[3 * (row/3) + i/3][3 *(col/3) + i%3] == val) return false;
-
+			// if(board[3 * (row/3) + i/3][3 *(col/3) + i%3] == val) return false;
 		}
 
 		// grid (3x3)
-		// int srow = (row/3) * 3;
-		// int scol = (col/3) * 3;
-		// for(int i = srow; i<srow+3; i++) {
-		// 	for(int j = scol; j<scol+3; j++) {
-		// 		if(board[i][j] == val){
-		// 			return false;
-		// 		}
-		// 	}
-		// }
+		int srow = (row/3) * 3;
+		int scol = (col/3) * 3;
+		for(int i = srow; i<srow+3; i++) {
+			for(int j = scol; j<scol+3; j++) {
+				if(board[i][j] == val){
+					return false;
+				}
+			}
+		}
 
 		return true;
 	}
