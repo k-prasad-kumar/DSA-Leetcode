@@ -14,7 +14,7 @@
  * }
  */
 class Solution {
-    public void inorder(TreeNode root, ArrayList<Integer> in){
+    private void inorder(TreeNode root, ArrayList<Integer> in){
         if(root == null) return;
 
         inorder(root.left, in);
@@ -22,22 +22,23 @@ class Solution {
         inorder(root.right, in);
     }
 
-    public TreeNode binaryBST(int s, int e, ArrayList<Integer> in){
+    private TreeNode inorderToBST(ArrayList<Integer> in, int s, int e){
         if(s > e) return null;
 
         int mid = s + (e-s)/2;
         TreeNode root = new TreeNode(in.get(mid));
 
-        root.left = binaryBST(s, mid-1, in);
-        root.right = binaryBST(mid+1, e, in);
+        root.left = inorderToBST(in, s, mid-1);
+        root.right = inorderToBST(in, mid+1, e);
 
         return root;
     }
+
     public TreeNode balanceBST(TreeNode root) {
         ArrayList<Integer> in = new ArrayList<>();
 
         inorder(root, in);
 
-        return binaryBST(0, in.size()-1, in);
+        return inorderToBST(in, 0, in.size()-1);
     }
 }
