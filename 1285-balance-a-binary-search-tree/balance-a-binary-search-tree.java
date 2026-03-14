@@ -25,7 +25,7 @@ class Solution {
     private TreeNode inorderToBST(ArrayList<TreeNode> in, int s, int e){
         if(s > e) return null;
 
-        if(s == e){ // if start == end that means its end so create node with left, right = null and return it;
+        if(s == e){ // if start == end that means its leaf node so create a node with left, right = null and return it;
             TreeNode n = in.get(s);
             n.left = null;
             n.right = null;
