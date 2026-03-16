@@ -26,10 +26,10 @@ class Solution {
         if(s > e) return null;
 
         if(s == e){ // if start == end that means its leaf node so create a node with left, right = null and return it;
-            TreeNode leafNode = in.get(s);
-            leafNode.left = null;
-            leafNode.right = null;
-            return leafNode;
+            TreeNode n = in.get(s);
+            n.left = null;
+            n.right = null;
+            return n;
         }
 
         int mid = s + (e-s)/2;
