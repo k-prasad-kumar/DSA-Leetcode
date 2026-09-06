@@ -1,12 +1,16 @@
 class Solution {
     public String defangIPaddr(String address) {
-        String ans = "";
+        // // 1 Own implementaion
+        // String ans = "";
         
-        for(char ch: address.toCharArray()){
-            // checking is it . char or not using ternary method
-            ans += ch == '.' ? "[.]" : String.valueOf(ch);
-        }
+        // for(char ch: address.toCharArray()){
+        //     // checking is it . char or not using ternary method
+        //     ans += ch == '.' ? "[.]" : String.valueOf(ch);
+        // }
 
-        return ans;
+        // return ans;
+
+        // 2 Using inbuilt methods
+        return address.replace(".","[.]");
     }
 }
