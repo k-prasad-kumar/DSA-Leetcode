@@ -6,13 +6,13 @@ class Solution {
 
         for(int i = 0; i<nums.length; i++){
             if(map.containsKey(target-nums[i])) {
-                ans[0] = map.get(target-nums[i]);
-                ans[1] = i;
-                return ans;
+                // ans[0] = map.get(target-nums[i]);
+                // ans[1] = i;
+                return new int[]{map.get(target-nums[i]), i};
             }
                 map.put(nums[i], i);
         }
-        
+
         return ans;
     }
 }
